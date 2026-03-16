@@ -1,0 +1,13 @@
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Dependencies
+/node_modules
+
+# TS build output
+/dist
+
+# Test converage
+/coverage
