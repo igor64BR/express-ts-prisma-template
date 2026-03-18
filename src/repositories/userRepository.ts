@@ -1,12 +1,14 @@
-import type { DbContext } from "#prisma/dbContext.js";
+import { DbContext } from "#prisma/dbContext.js";
 import type { Post, User } from "#prisma/generated/prisma/client.js";
+import { inject, injectable } from "inversify";
 
 import { type IUserRepository } from "../interfaces/IUserRepository.js";
 
+@injectable()
 export class UserRepository implements IUserRepository {
   private _dbSet;
 
-  constructor(dbContext: DbContext) {
+  constructor(@inject(DbContext) dbContext: DbContext) {
     this._dbSet = dbContext.client.user;
   }
 

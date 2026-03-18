@@ -1,15 +1,12 @@
+import { container } from "#container.js";
 import { UserController } from "#controllers/userController.js";
 import type { ICreateUser } from "#interfaces/user.interfaces.js";
-import { DbContext } from "#prisma/dbContext.js";
-import { UserRepository } from "#repositories/userRepository.js";
 import { Router, type Request } from "express";
 import { StatusCodes } from "http-status-codes";
 
 export const userRouter = Router();
 
-const dbContext = new DbContext();
-const repository = new UserRepository(dbContext);
-const controller = new UserController(repository);
+const controller = container.get(UserController);
 
 userRouter.get("/", async (_, res) => {
   const users = await controller.getAll();

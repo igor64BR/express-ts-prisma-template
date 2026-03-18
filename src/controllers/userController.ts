@@ -1,8 +1,11 @@
 import type { IUserRepository } from "#interfaces/IUserRepository.js";
 import type { ICreateUser } from "#interfaces/user.interfaces.js";
+import { UserRepository } from "#repositories/userRepository.js";
+import { inject, injectable } from "inversify";
 
+@injectable()
 export class UserController {
-  constructor(private readonly _userRepository: IUserRepository) {}
+  constructor(@inject(UserRepository) private readonly _userRepository: IUserRepository) {}
 
   public async getAll() {
     return await this._userRepository.findAll();

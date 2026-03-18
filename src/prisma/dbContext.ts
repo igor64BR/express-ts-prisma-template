@@ -2,7 +2,9 @@ import { DatabaseError } from "#errors/databaseError.js";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 import { PrismaClient } from "./generated/prisma/client.js";
+import { injectable } from "inversify";
 
+@injectable()
 export class DbContext {
   private static readonly _connectionString?: string = process.env["DATABASE_URL"];
 
