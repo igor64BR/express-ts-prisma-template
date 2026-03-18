@@ -11,3 +11,5 @@
 
 # Test converage
 /coverage
+
+/src/prisma/generated/prisma
